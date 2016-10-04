@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class Jogo {
 
     private static final String MSG_SOLICITAR_JOGADA = "Sua vez [x y]: ";
-    private static final String MSG_INICIO_JOGO = "Quem come\u00E7a?\n1 = M\u00E1quina\n2 = Usu\u00E1rio: ";
-    private static final String MSG_PERDEU = "Voc\u00EA precisa treinar mais um pouco ;(";
-    private static final String MSG_GANHOU = "Vossa Excel\u00EAncia faturou! :-O";
+    private static final String MSG_INICIO_JOGO = "Quem comeÃ§a?\n1 = MÃ¡quina\n2 = UsuÃ¡rio: ";
+    private static final String MSG_PERDEU = "VocÃª precisa treinar mais um pouco ;(";
+    private static final String MSG_GANHOU = "Vossa ExcelÃªncia faturou! :-O";
     private static final String MSG_EMPATOU = "Empatou!";
 
     private final char casaLivre;
@@ -65,7 +65,6 @@ public class Jogo {
         jogar(new Jogada(x, y), 2);
     }
 
-
     private void solicitarJogadaDaMaquina() {
         if (jogoEstaNoInicio()) {
             Random random = new Random();
@@ -81,9 +80,8 @@ public class Jogo {
         return obterCasasLivres().size() == 9;
     }
 
-
     private boolean fimDeJogo() {
-        // O jogo acaba quando alguém vence ou empata (sem demais jogadas possíveis)
+        // O jogo acaba quando alguÃ©m vence ou empata (sem demais jogadas possÃ­veis)
         return (venceu(1) || venceu(2) || obterCasasLivres().isEmpty());
     }
 
@@ -106,15 +104,15 @@ public class Jogo {
     }
 
     private List<Jogada> obterCasasLivres() {
-        final List<Jogada> pontosDisponiveis = new ArrayList<>();
+        final List<Jogada> casasLivres = new ArrayList<>();
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 if (tabuleiro[i][j] == 0) {
-                    pontosDisponiveis.add(new Jogada(i, j));
+                    casasLivres.add(new Jogada(i, j));
                 }
             }
         }
-        return pontosDisponiveis;
+        return casasLivres;
     }
 
     private void jogar(Jogada jogada, int jogador) {
@@ -129,7 +127,6 @@ public class Jogo {
                 System.out.print(obterRepresentacaoDaCasa(tabuleiro[i][j]) + " ");
             }
             System.out.println();
-
         }
     }
 
@@ -161,7 +158,7 @@ public class Jogo {
                     if(profundidade == 0) jogadaDaMaquina = jogada;
                 }
                 if (nota == 1) {
-                    // Se a nota foi 1, então imediatamente pára
+                    // Se a nota foi 1, entÃ£o imediatamente pÃ¡ra
                     tabuleiro[jogada.x][jogada.y] = 0;
                     break;
                 }
@@ -173,7 +170,7 @@ public class Jogo {
                 int nota = minimax(profundidade + 1, 1);
                 min = Math.min(nota, min);
                 if (min == -1) {
-                    // Se a nota foi -1, então imediatamente pára
+                    // Se a nota foi -1, entÃ£o imediatamente pÃ¡ra
                     tabuleiro[jogada.x][jogada.y] = 0;
                     break;
                 }
